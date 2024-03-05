@@ -4,7 +4,7 @@
 	// Highlight JS
 	import hljs from 'highlight.js/lib/core';
 	import 'highlight.js/styles/github-dark.css';
-	import { storeHighlightJs } from '@skeletonlabs/skeleton';
+	import { AppShell, storeHighlightJs } from '@skeletonlabs/skeleton';
 	import xml from 'highlight.js/lib/languages/xml'; // for HTML
 	import css from 'highlight.js/lib/languages/css';
 	import javascript from 'highlight.js/lib/languages/javascript';
@@ -22,11 +22,41 @@
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
 	import Footer from './Footer.svelte';
+	import Header from './Header.svelte';
 </script>
 
 <div class="app">
-
-	<slot/>
-
-	<Footer />
+	<AppShell>
+		<svelte:fragment slot="header">
+			<Header />
+		</svelte:fragment>
+		<main>
+			<slot />
+		</main>
+		<svelte:fragment slot="footer">
+			<Footer />
+		</svelte:fragment>
+	</AppShell>
 </div>
+
+<style>
+	/* フルハイトコンテナ */
+	.app {
+		display: flex;
+		flex-direction: column;
+		height: 100vh; /* ビューポートの高さを100%に設定 */
+	}
+
+	/* メインコンテンツ用のスタイル、必要に応じて調整 */
+	main {
+		flex-grow: 1; /* フレックスアイテムがコンテナの残りのスペースを埋めるようにする */
+		overflow-y: auto; /* 必要に応じてスクロールバーを表示 */
+		padding-top: var(--header-height); /* ヘッダーの高さ、変数は実際の値に置き換えてください */
+		padding-bottom: var(--footer-height); /* フッターの高さ、変数は実際の値に置き換えてください */
+	}
+
+	/* ヘッダーとフッターのスタイルはプロジェクトに合わせて調整 */
+	header, footer {
+		flex-shrink: 0; /* フレックスアイテムが縮小しないようにする */
+	}
+</style>
