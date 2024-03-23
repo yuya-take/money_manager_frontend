@@ -24,19 +24,15 @@
 </script>
 
 <header>
-    <!-- <AppShell>
-        <svelte:fragment slot="header"> -->
-            <AppBar class="flex justify-between w-full px-4">
-                <svelte:fragment slot="lead">{title}</svelte:fragment>
-                <svelte:fragment slot="trail">
-                    <button 
-                        type="button"
-                        on:click={() => goto('/setting')} 
-                        class="btn-icon">
-                        <IconParkTwotoneSetting />
-                    </button>
-                </svelte:fragment>
-            </AppBar>
-        <!-- </svelte:fragment>
-    </AppShell> -->
+    <AppBar class="flex justify-between w-full px-4">
+        <svelte:fragment slot="lead">{title}</svelte:fragment>
+        <svelte:fragment slot="trail">
+            <button 
+                type="button"
+                on:click={() => goto('/setting')} 
+                class="btn-icon">
+                <IconParkTwotoneSetting />
+            </button>
+        </svelte:fragment>
+    </AppBar>
 </header>
